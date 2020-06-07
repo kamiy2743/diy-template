@@ -372,8 +372,8 @@ $(function() {
   info.forEach((info) => {
     $("table").append(`
     <tr class="item" category="${info.category}" series="${info.series}" obtain="${info.obtain}" search="${convertStr(info.name)}" make="${info.make}">
-      <td class="get-if"><span>未取得</span></td>
-      <td class="dist-if"><span>不可</span></td>
+      <td class="get-if"><div>未取得</div></td>
+      <td class="dist-if"><div>不可</div></td>
       <td class="nos">
         <select>
           <option>--</option>
