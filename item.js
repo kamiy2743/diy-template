@@ -784,7 +784,7 @@ $(function() {
     return command;
   }
   var itemHTML = `
-  <tr class="item ${classCommand(0)}">
+  <tr class="item">
   <td class="get-if"><div class="get-if-btn">未取得</div></td>
   <td class="dist-if"><div class="dist-if-btn">不可</div></td>
   <td class="nos">
@@ -812,7 +812,7 @@ $(function() {
   `;
   for (var i=1; i < info.length; i++) {
     itemHTML += `
-    <tr class="item ${classCommand(i)}">
+    <tr class="item">
       <td class="get-if"><div class="get-if-btn">未取得</div></td>
       <td class="dist-if"><div class="dist-if-btn">不可</div></td>
       <td class="nos">
@@ -879,6 +879,31 @@ $(function() {
     $("#detail-option").html(`<p style="color: rgb(231, 151, 67)">${option(info[index].option)}</p>`);
     $("#making").html(`<p>${info[index].make}</p>`);
     makeImage();
+  });
+
+  $(".get-if-btn").click(function() {
+    var $parent = $(this).parents(".item");
+    if ($(this).hasClass("get-selected")) {
+      $(this).removeClass("get-selected").text("未取得");
+      $parent.find(".dist-if-btn").removeClass("dist-selected").text("不可");
+      $parent.find("select").prop("disabled",true);
+      $parent.find("option").prop("selected",false);
+    } else {
+      $(this).addClass("get-selected").text("取得済");
+    }
+  });
+  $(".dist-if-btn").click(function() {
+    var $parent = $(this).parents(".item");
+    if ($(this).hasClass("dist-selected")) {
+      $(this).removeClass("dist-selected").text("不可");
+      $parent.find("select").prop("disabled",true);
+      $parent.find("option").prop("selected",false);
+    } else {
+      $(this).addClass("dist-selected").text("可");
+      $parent.find(".get-if-btn").addClass("get-selected").text("取得済");
+      $parent.find("select").prop("disabled",false);
+      $parent.find(".opsele").prop("selected",true);
+    }
   });
 
 });
