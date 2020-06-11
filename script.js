@@ -26,9 +26,9 @@ $(function() {
   $(".fa-arrows-alt-h").click(function() {
     $("#detail-container").toggleClass("small");
     if ($("#detail-container").hasClass("small")) {
-      $("#detail-container").css("top","70px");
+      $("#detail-container").css("top","80px");
     } else {
-      $("#detail-container").css("top","95px");
+      $("#detail-container").css("top","105px");
     }
   });
 
