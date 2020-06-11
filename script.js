@@ -1,5 +1,10 @@
 $(function() {
 
+  $("#howtouse").click(function() {
+    $(".fa-chevron-right").toggleClass("none");
+    $(".fa-chevron-down").toggleClass("none");
+  });
+
   $("#list-search select").change(function() {
     var cate = $("#category-list").val();
     var seri = $("#series-list").val();
@@ -21,9 +26,9 @@ $(function() {
   $(".fa-arrows-alt-h").click(function() {
     $("#detail-container").toggleClass("small");
     if ($("#detail-container").hasClass("small")) {
-      $("#detail-container").css("top","160px");
+      $("#detail-container").css("top","70px");
     } else {
-      $("#detail-container").css("top","220px");
+      $("#detail-container").css("top","95px");
     }
   });
 
