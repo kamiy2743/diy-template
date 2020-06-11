@@ -930,6 +930,7 @@ $(function() {
         $(this).addClass("show");
       }
     });
+    $("#active-input").val('');
     itemLength();
   });
 
