@@ -2,6 +2,7 @@
   <html>
     <head>
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
       <title>tester</title>
       <link rel="stylesheet" type="text/css" href="stylesheet.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
@@ -46,24 +47,6 @@
                 <option value="6">その他</option>
               </select>
             </div>
-            <div id="series-search">
-              <span>イベントレシピ</span>
-              <select id="series-list">
-                <option value="all">---</option>
-                <option value="0">イースター</option>
-                <option value="1">さくら</option>
-                <option value="2">たけ</option>
-                <option value="3">なつのかいがら</option>
-                <option value="4">きのみ</option>
-                <option value="5">キノコ</option>
-                <option value="6">落ち葉</option>
-                <option value="7">こおり</option>
-                <option value="8">オーナメント</option>
-                <option value="9">かいがら</option>
-                <option value="10">星座</option>
-                <option value="11">宇宙</option>
-              </select>
-            </div>
             <div id="obtain-search">
               <span>入手方法</span>
               <select id="obtain-list">
@@ -84,10 +67,27 @@
                 <option value="13">フーコ</option>
               </select>
             </div>
+            <div id="series-search">
+              <span>イベントレシピ</span>
+              <select id="series-list">
+                <option value="all">---</option>
+                <option value="0">イースター</option>
+                <option value="1">さくら</option>
+                <option value="2">たけ</option>
+                <option value="3">なつのかいがら</option>
+                <option value="4">きのみ</option>
+                <option value="5">キノコ</option>
+                <option value="6">落ち葉</option>
+                <option value="7">こおり</option>
+                <option value="8">オーナメント</option>
+                <option value="9">かいがら</option>
+                <option value="10">星座</option>
+                <option value="11">宇宙</option>
+              </select>
+            </div>
           </div>
           <div id="active-search">
             <input type="text" placeholder="アイテム名検索">
-            <div id="search-btn">検索</div>
           </div>
         </div>
 
@@ -99,8 +99,8 @@
               <img id="detail-img">
               <div id="detail-list">
                 <p>カテゴリー: <span id="detail-category"></span></p>
-                <p>シリーズ:  <span id="detail-series"></span></p>
                 <p>入手方法:  <span id="detail-get"></span></p>
+                <p>イベント:  <span id="detail-series"></span></p>
                 <div id="detail-option"></div>
               </div>
             </div>
