@@ -898,14 +898,12 @@ $(function() {
     var $parent = $(this).parents(".item");
     if ($(this).hasClass("dist-selected")) {
       $(this).removeClass("dist-selected").text("不可");
-      $parent.find("select").prop("disabled",true);
+      $parent.find("select").prop("disabled",true).css("opacity",0.5);
       $parent.find("option").prop("selected",false);
     } else {
       $(this).addClass("dist-selected").text("可");
       $parent.find(".get-if-btn").addClass("get-selected").text("取得済");
-      $parent.find("select").prop("disabled",false);
+      $parent.find("select").prop("disabled",false).css("opacity",1.0);
       $parent.find(".opsele").prop("selected",true);
     }
   });
-
-});
