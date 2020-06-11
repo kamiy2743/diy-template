@@ -883,7 +883,7 @@ $(function() {
     makeImage();
   });
 
-  $(".get-if-btn").on("click touchstart",function() {
+  $(".get-if-btn").click(function() {
     var $parent = $(this).parents(".item");
     if ($(this).hasClass("get-selected")) {
       $(this).removeClass("get-selected").text("未取得");
