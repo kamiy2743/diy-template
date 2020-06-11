@@ -5,21 +5,6 @@ $(function() {
     $(".fa-chevron-down").toggleClass("none");
   });
 
-  $("#list-search select").change(function() {
-    var cate = $("#category-list").val();
-    var seri = $("#series-list").val();
-    var obt = $("#obtain-list").val();
-    var com = `category${cate} ` + `series${seri} ` + `obtain${obt} `;
-    var command = com.replace("categoryall ",'').replace("seriesall ",'').replace("obtainall ",'');
-    console.log(command);
-    $(".item").each(function() {
-      if ($(this).hasClass(`${command}`)) {
-      } else {
-        $(this).addClass("none");
-      }
-    });
-  });
-
   $(".fa-times").click(function() {
     $("#detail-container").hide();
   });
