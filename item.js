@@ -945,6 +945,7 @@ $(function() {
         $(this).addClass("show");
       }
     });
+    $(".op").prop("selected",true);
     itemLength();
   });
 
