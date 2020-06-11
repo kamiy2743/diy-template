@@ -779,12 +779,12 @@ $(function() {
   ];
 
   function classCommand(i) {
-    var com = `category${info[i].category} ` + `series${info[i].series} ` + `obtain${info[i].obtain} `;
+    var com = `category${info[i].category} ` + `obtain${info[i].obtain} ` + `series${info[i].series} `;
     var command = com.replace("category99 ",'').replace("series99 ",'').replace("obtain99 ",'');
     return command;
   }
   var itemHTML = `
-  <tr class="item">
+  <tr class="item show" value="${classCommand(0)}" search="${convertStr(info[0].name)}">
   <td class="get-if"><div class="get-if-btn">未取得</div></td>
   <td class="dist-if"><div class="dist-if-btn">不可</div></td>
   <td class="nos">
@@ -812,7 +812,7 @@ $(function() {
   `;
   for (var i=1; i < info.length; i++) {
     itemHTML += `
-    <tr class="item">
+    <tr class="item show" value="${classCommand(i)}" search="${convertStr(info[i].name)}">
       <td class="get-if"><div class="get-if-btn">未取得</div></td>
       <td class="dist-if"><div class="dist-if-btn">不可</div></td>
       <td class="nos">
@@ -841,7 +841,10 @@ $(function() {
   };
   $("table").append(itemHTML);
 
-  $("#items-length").text(`表示件数：${$(".item").length}`);
+  function itemLength() {
+    $("#items-length").text(`表示件数：${$('.item[class*="show"]').length}`);
+  }
+  itemLength();
 
   function category(data) {
     return $("#category-list").find(`option[value="${data}"]`).text();
@@ -906,6 +909,43 @@ $(function() {
       $parent.find("select").prop("disabled",false).css("opacity",1.0);
       $parent.find(".opsele").prop("selected",true);
     }
+  });
+
+  $("#list-search select").change(function() {
+    var cate = $("#category-list").val();
+    var seri = $("#series-list").val();
+    var obt = $("#obtain-list").val();
+
+    var com = `category${cate} ` + `obtain${obt} ` + `series${seri} `;
+    var command = com.replace("categoryall ",'').replace("obtainall ",'').replace("seriesall ",'');
+    console.log(command);
+
+    $(".item").each(function() {
+      var value = $(this).attr("value");
+      if (value.indexOf(command) == -1) {
+        $(this).addClass("none");
+        $(this).removeClass("show");
+      } else {
+        $(this).removeClass("none");
+        $(this).addClass("show");
+      }
+    });
+    itemLength();
+  });
+
+  $("#active-input").on("input",function() {
+    var getInput = $("#active-input").val();
+    $(".item").each(function() {
+      var searchName = $(this).attr("search");
+      if (searchName.indexOf(getInput) == -1) {
+        $(this).addClass("none");
+        $(this).removeClass("show");
+      } else {
+        $(this).removeClass("none");
+        $(this).addClass("show");
+      }
+    });
+    itemLength();
   });
 
 });
