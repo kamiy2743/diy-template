@@ -1,9 +1,11 @@
 $(function() {
+// カタカナ⇒ひらがな
   function convertStr(str) {
     return str.replace(/[ァ-ン]/g, function(s) {
       return String.fromCharCode(s.charCodeAt(0) - 0x60);
     });
   }
+// アイテム情報
   var get0 = "ぼんやり男";
   var get1 = "ハキハキ男";
   var get2 = "コワイ男";
@@ -778,13 +780,14 @@ $(function() {
     {name: "おとめざのかけら",image: "StarpieceVirgo"}
   ];
 
-  function classCommand(i) {
+// table要素に追加
+  function valueCommand(i) {
     var com = `category${info[i].category} ` + `obtain${info[i].obtain} ` + `series${info[i].series} `;
     var command = com.replace("category99 ",'').replace("series99 ",'').replace("obtain99 ",'');
     return command;
   }
   var itemHTML = `
-  <tr class="item show" value="${classCommand(0)}" search="${convertStr(info[0].name)}">
+  <tr class="item show" code="0" value="${valueCommand(0)}" search="${convertStr(info[0].name)}">
   <td class="get-if"><div class="get-if-btn">未取得</div></td>
   <td class="dist-if"><div class="dist-if-btn">不可</div></td>
   <td class="nos">
@@ -812,7 +815,7 @@ $(function() {
   `;
   for (var i=1; i < info.length; i++) {
     itemHTML += `
-    <tr class="item show" value="${classCommand(i)}" search="${convertStr(info[i].name)}">
+    <tr class="item show" code="0" value="${valueCommand(i)}" search="${convertStr(info[i].name)}" code="0">
       <td class="get-if"><div class="get-if-btn">未取得</div></td>
       <td class="dist-if"><div class="dist-if-btn">不可</div></td>
       <td class="nos">
@@ -841,11 +844,23 @@ $(function() {
   };
   $("table").append(itemHTML);
 
+// 表示件数取得
   function itemLength() {
-    $("#items-length").text(`表示件数：${$('.item[class*="show"]').length}`);
+    $("#items-length").text(`表示件数：${$('.show').length} `);
+  }
+  function searchCode() {
+    $(".item").removeClass("had");
+    $(".show").each(function() {
+      if ($(this).attr("code") != 0) {
+        $(this).addClass("had");
+      }
+    });
+    $("#items-has").text(`(取得済：${$(".had").length} )`);
   }
   itemLength();
+  searchCode();
 
+// 詳細表示機能
   function category(data) {
     return $("#category-list").find(`option[value="${data}"]`).text();
   }
@@ -863,13 +878,10 @@ $(function() {
     $("#making p").each(function() {
       $(this).wrap('<div class="make-ele"></div>');
       var elementName = convertStr($(this).text()).replace(" x",'').replace(/[0-9.]/g,'');
-      console.log(elementName);
       var ert = elementImage.findIndex(function(obj) {
         obj.search = convertStr(obj.name);
         return obj.search === elementName;
       });
-      console.log(ert);
-      console.log(elementImage[ert].image);
       $(this).before(`<img src="image/${elementImage[ert].image}.png">`)
     });
   }
@@ -886,6 +898,7 @@ $(function() {
     makeImage();
   });
 
+// 取得配布ボタン
   $(".get-if-btn").click(function() {
     var $parent = $(this).parents(".item");
     if ($(this).hasClass("get-selected")) {
@@ -893,8 +906,12 @@ $(function() {
       $parent.find(".dist-if-btn").removeClass("dist-selected").text("不可");
       $parent.find("select").prop("disabled",true);
       $parent.find("option").prop("selected",false);
+      $(this).parents(".item").attr("code", 0);
+      searchCode();
     } else {
       $(this).addClass("get-selected").text("取得済");
+      $(this).parents(".item").attr("code", 1);
+      searchCode();
     }
   });
   $(".dist-if-btn").click(function() {
@@ -903,14 +920,18 @@ $(function() {
       $(this).removeClass("dist-selected").text("不可");
       $parent.find("select").prop("disabled",true).css("opacity",0.5);
       $parent.find("option").prop("selected",false);
+      $(this).parents(".item").attr("code", 1);
     } else {
       $(this).addClass("dist-selected").text("可");
       $parent.find(".get-if-btn").addClass("get-selected").text("取得済");
       $parent.find("select").prop("disabled",false).css("opacity",1.0);
       $parent.find(".opsele").prop("selected",true);
+      $(this).parents(".item").attr("code", 2);
+      searchCode();
     }
   });
 
+// 検索機能
   function convetrCom(data) {
     var val = $(`#${data}-list`).val();
     return `${data}${val} `.replace(`${data}all `,'');
@@ -919,9 +940,6 @@ $(function() {
     var cate = convetrCom("category");
     var obt = convetrCom("obtain");
     var seri = convetrCom("series");
-
-    var command = `${cate}` + `${obt}` + `${seri}`;
-    console.log(command);
 
     $(".item").each(function() {
       var value = $(this).attr("value");
@@ -933,10 +951,11 @@ $(function() {
         $(this).addClass("show");
       }
     });
+
     $("#active-input").val('');
     itemLength();
+    searchCode();
   });
-
   $("#active-input").on("input",function() {
     var getInput = $("#active-input").val();
     $(".item").each(function() {
@@ -951,6 +970,7 @@ $(function() {
     });
     $(".op").prop("selected",true);
     itemLength();
+    searchCode();
   });
 
 });
