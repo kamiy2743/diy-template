@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
       <title>tester</title>
       <link rel="stylesheet" type="text/css" href="stylesheet.min.css">
+      <link rel="stylesheet" type="text/css" href="template.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script>
@@ -15,9 +16,9 @@
         <div id="header-title">
           DIYレシピ一覧 & テンプレート作成
         </div>
-        <div id="mylist">
-          <i class="fas fa-list"></i>
-          <span>マイリスト</span>
+        <div id="template">
+          <i class="fas fa-paste"></i>
+          <div>テンプレ作成</div>
         </div>
       </header>
 
@@ -129,6 +130,30 @@
         </div>
 
       </main>
+
+      <div id="main-template" class="none">
+        <div id="tab-title-container">
+          <div class="tab-title left-tab bottom-none" value="1">
+            single-tab
+          </div>
+          <div class="tab-title right-tab" value="2">
+            multi-tab
+          </div>
+        </div>
+
+        <div id="single-template">
+          <div class="tab-main single-main" value="1">
+            tab-main-1
+          </div>
+        </div>
+
+        <div id="multi-tamplate">
+          <div class="tab-main multi-main none" value="2">
+            tab-main-2
+          </div>
+        </div>
+
+      </div>
 
       <script src="item.js"></script>
       <script src="script.js"></script>
