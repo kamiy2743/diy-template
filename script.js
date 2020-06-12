@@ -1,10 +1,11 @@
 $(function() {
-
+// 使い方
   $("#howtouse").click(function() {
     $(".fa-chevron-right").toggleClass("none");
     $(".fa-chevron-down").toggleClass("none");
   });
 
+// 詳細機能を閉じたり縮小
   $(".fa-times").click(function() {
     $("#detail-container").hide();
   });
@@ -17,9 +18,9 @@ $(function() {
     }
   });
 
+// TOPに戻る
   $("#top-btn").click(function() {
     $("html,body").animate({"scrollTop":0},100);
   });
 
 });
-
