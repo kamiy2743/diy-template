@@ -5,6 +5,27 @@ $(function() {
     $(".fa-chevron-down").toggleClass("none");
   });
 
+// テンプレート作成画面へ
+  $("#template").click(function() {
+    $("header,main").hide();
+    $("#main-template").show();
+  });
+
+// タブの切り替え
+  function tabControl(y,n) {
+    $(`.tab-title[value="${y}"]`).removeClass("bottom-none");
+    $(`.tab-main[value="${y}"]`).addClass("none");
+    $(`.tab-title[value="${n}"]`).addClass("bottom-none");
+    $(`.tab-main[value="${n}"]`).removeClass("none");
+  }
+  $(".tab-title").click(function() {
+    if ($(this).attr("value") == 2) {
+      tabControl(1,2);
+    } else {
+      tabControl(2,1);
+    }
+  });
+
 // 詳細機能を閉じたり縮小
   $(".fa-times").click(function() {
     $("#detail-container").hide();
