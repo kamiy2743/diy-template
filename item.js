@@ -973,20 +973,61 @@ $(function() {
     searchCode();
   });
 
-  var multiCapture = `
-  <div class="item-capture">
-    <img src="image/${info[0].image}.png">
-    <div class="name-capture">${info[0].name}</div>
-  </div>
-  `;
-  for (var i=1; i < info.length; i++) {
-    multiCapture += `
-    <div class="item-capture">
-      <img src="image/${info[i].image}.png">
-      <div class="name-capture">${info[i].name}</div>
+// multi-captureに追加
+  function multiAdd(e) {
+    var first = (150 * (e-1)) + 1;
+    var end = e * 150;
+    if (end == 600) {
+      var end = info.length;
+    }
+    var multiCapture = `
+      <div class="item-capture">
+        <img src="image/${info[first].image}.png">
+        <div class="name-capture">${info[first].name}</div>
+      </div>
+    `;
+    for (var i = `${first}`; i < `${end}`; i++) {
+      multiCapture += `
+      <div class="item-capture">
+        <img src="image/${info[i].image}.png">
+        <div class="name-capture">${info[i].name}</div>
+      </div>
+      `
+    }
+    var multiCaptureHTML = `
+    <div class="multi-capture-container">
+      <div class="multi-capture">
+        <div class="multi-capture-title">
+          <img src="image/DIY-icon.png">
+          <div>
+            <p>DIYレシピ テンプレ作成</p>
+            <p class="twitter">@kamiy2743</p>
+          </div>
+          <div class="prop">(${e} / 4)</div>
+          <div class="guide-container">
+          <div class="guide-y guide">
+            <div></div>
+            <p>⇒ 取得済</p>
+          </div>
+          <div class="guide-n guide">
+            <div></div>
+            <p>⇒ 配布可</p>
+          </div>
+          </div>
+        </div>
+        <div class="multi-capture-main">
+          <div class="items-capture" value="${i}">
+            ${multiCapture}
+          </div>
+        </div>
+      </div>
     </div>
     `
+    $("#multi-capture-boss").append(multiCaptureHTML);
   }
-  $("#items-capture").append(multiCapture);
+  multiAdd(1);
+  multiAdd(2);
+  multiAdd(3);
+  multiAdd(4);
 
 });
