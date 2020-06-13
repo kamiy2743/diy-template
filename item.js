@@ -18,7 +18,7 @@ $(function() {
   var get9 = "たぬき商店";
   var get10 = "たぬきマイル交換";
   var get13 = "フーコ";
-  var balloon =　"風船<br>(季節限定)"
+  var balloon =　"風船<br>(季節限定)";
   var info = [
     {category: 0,series: 99,obtain: 99,make: "きのえだ x5</p><p>いし x1",image: "ToolAxeStone",name: "ショボいオノ",get: "たぬきち"},
     {category: 0,series: 99,obtain: 10,make: "ショボいオノ x1</p><p>もくざい x3",image: "ToolAxeStoneNormal",name: "いしのオノ",get: get10},
@@ -614,8 +614,8 @@ $(function() {
     {category: 5,series: 0,obtain: 8,make: "じめんのたまご x1</p><p>いわのたまご x1</p><p>はっぱのたまご x1</p><p>ウッディなたまご x1</p><p>そらとぶたまご x1</p><p>サカナのたまご x1",image: "CapOrnamentCEgg0",name: "イースターなかんむり",get: get8+"<br>(季節限定)",option: "4/1～4/12"},
     {category: 5,series: 0,obtain: 8,make: "じめんのたまご x1</p><p>いわのたまご x1</p><p>はっぱのたまご x1</p><p>ウッディなたまご x1</p><p>そらとぶたまご x1</p><p>サカナのたまご x1",image: "BagBackpackEgg0",name: "イースターなバッグ",get: get8+"<br>(季節限定)",option: "4/1～4/12"},
     {category: 6,series: 0,obtain: 12,make: "じめんのたまご x1</p><p>いわのたまご x1</p><p>はっぱのたまご x1</p><p>ウッディなたまご x1</p><p>そらとぶたまご x1</p><p>サカナのたまご x1",image: "ItemFenceEgg",name: "イースターなさく",get: balloon,option: "4/1～4/12"},
-    {category: 5,series: 0,obtain: 99,make: "ぴょんたろうのおきあがりこぼし x1</p><p>ほしのかけら x3",image: "ToolStickEgg",name: "イースターなステッキ",get: "ぴょんたろう",option: "4/1～4/12"},
-  ]
+    {category: 0,series: 0,obtain: 99,make: "ぴょんたろうのおきあがりこぼし x1</p><p>ほしのかけら x3",image: "ToolStickEgg",name: "イースターなステッキ",get: "ぴょんたろう",option: "4/1～4/12"},
+  ];
   var elementImage = [
     {name: "ゆきのだいけっしょう",image: "SnowCrystalLarge"},
     {name: "ゆきのけっしょう",image: "SnowCrystal"},
@@ -841,7 +841,7 @@ $(function() {
       <td class="howtoget">${info[i].get}</td>
     </tr>
     `;
-  };
+  }
   $("table").append(itemHTML);
 
 // 表示件数取得
@@ -972,5 +972,21 @@ $(function() {
     itemLength();
     searchCode();
   });
+
+  var multiCapture = `
+  <div class="item-capture">
+    <img src="image/${info[0].image}.png">
+    <div class="name-capture">${info[0].name}</div>
+  </div>
+  `;
+  for (var i=1; i < info.length; i++) {
+    multiCapture += `
+    <div class="item-capture">
+      <img src="image/${info[i].image}.png">
+      <div class="name-capture">${info[i].name}</div>
+    </div>
+    `
+  }
+  $("#items-capture").append(multiCapture);
 
 });
