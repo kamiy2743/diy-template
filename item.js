@@ -383,7 +383,7 @@ $(function() {
     {category: 1,series: 10,obtain: 13,make: "ほしのかけら x3</p><p>うおざのかけら x2</p><p>きんこうせき x2</p><p>いし x4",image: "FtrZodiacPisces",name: "ピスケスのランプ",get: get13},
     {category: 1,series: 2,obtain: 6,make: "バンブー x5",image: "FtrBambooStool_Remake_0_0",name: "たけのスツール",get: get6},
     {category: 1,series: 2,obtain: 4,make: "バンブー x8",image: "FtrBambooChairL_Remake_0_0",name: "たけのベンチ",get: get4},
-    {category: 2,series: 2,obtain: 6,make: "バンブー x3</p><p>ねんど x2",image: "FtrBambooShelf_Remake_0_0",name: "たけのキャンドルホルダー",get: get6},
+    {category: 2,series: 2,obtain: 6,make: "バンブー x3</p><p>ねんど x2",image: "FtrBambooCandle_Remake_0_0",name: "たけのキャンドルホルダー",get: get6},
     {category: 1,series: 2,obtain: 2,make: "バンブー x7</p><p>いし x6",image: "FtrBambooScreen_Remake_0_0",name: "たけのスクリーン",get: get2},
     {category: 2,series: 2,obtain: 4,make: "バンブー x3",image: "FtrBambooBall_Remake_0_0",name: "たけのまり",get: get4},
     {category: 1,series: 2,obtain: 6,make: "バンブー x15",image: "FtrBambooShelf_Remake_0_0",name: "たけのシェルフ",get: get6},
@@ -806,7 +806,7 @@ $(function() {
   </td>
   <td class="item-main-container">
   <div class="item-main">
-  <img src="image/${info[0].image}.png">
+  <img class="lazyload" data-src="image/${info[0].image}.png">
   <div class="info-name">${info[0].name}</div>
   </div>
   </td>
