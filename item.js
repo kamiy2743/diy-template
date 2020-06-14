@@ -1,4 +1,4 @@
-
+//item.js
 // カタカナ⇒ひらがな
   function convertStr(str) {
     return str.replace(/[ァ-ン]/g, function(s) {
@@ -975,57 +975,77 @@
   });
 
 // multi-captureに追加
-  function multiAdd(e) {
-    var first = (150 * (e-1)) + 1;
-    var end = e * 150;
-    if (end == 600) {
-      var end = info.length;
-    }
-    var multiCapture = `
+  $(".btn").click(function() {
+    function multiAdd(e) {
+      var first = 150 * (e-1);
+      var end = e * 150 - 1;
+      if (end == 599) {
+        var end = info.length - 1;
+      }
+      var multiCapture = `
       <div class="item-capture">
-        <img src="image/${info[first].image}.png">
-        <div class="name-capture">${info[first].name}</div>
+      <img src="image/${info[first].image}.png" value="${first}">
+      <div class="name-capture">${info[first].name}</div>
       </div>
-    `;
-    for (var i = `${first}`; i < `${end}`; i++) {
-      multiCapture += `
-      <div class="item-capture">
-        <img src="image/${info[i].image}.png">
+      `;
+      for (var i = `${first + 1}`; i < `${end + 1}`; i++) {
+        multiCapture += `
+        <div class="item-capture">
+        <img src="image/${info[i].image}.png" value="${i}">
         <div class="name-capture">${info[i].name}</div>
+        </div>
+        `
+      }
+      var multiCaptureHTML = `
+      <div class="multi-capture-container none" value="${e}">
+      <div class="multi-capture">
+      <div class="multi-capture-title">
+      <img src="image/DIY-icon.png">
+      <div class="title-main">
+      <p>DIYレシピ テンプレ作成<span>(${e} / 4)</span></p>
+      <p class="twitter">@kamiy2743</p>
+      </div>
+      <div class="guide-container">
+      <div class="guide-y guide">
+      <div></div>
+      <p>⇒ 取得済</p>
+      </div>
+      <div class="guide-n guide">
+      <div></div>
+      <p>⇒ 配布可</p>
+      </div>
+      </div>
+      </div>
+      <div class="multi-capture-main">
+      <div class="items-capture" value="${i}">
+      ${multiCapture}
+      </div>
+      </div>
+      </div>
       </div>
       `
+      $("#multi-capture-boss").append(multiCaptureHTML);
     }
-    var multiCaptureHTML = `
-    <div class="multi-capture-container">
-      <div class="multi-capture">
-        <div class="multi-capture-title">
-          <img src="image/DIY-icon.png">
-          <div class="title-main">
-            <p>DIYレシピ テンプレ作成<span>(${e} / 4)</span></p>
-            <p class="twitter">@kamiy2743</p>
-          </div>
-          <div class="guide-container">
-          <div class="guide-y guide">
-            <div></div>
-            <p>⇒ 取得済</p>
-          </div>
-          <div class="guide-n guide">
-            <div></div>
-            <p>⇒ 配布可</p>
-          </div>
-          </div>
-        </div>
-        <div class="multi-capture-main">
-          <div class="items-capture" value="${i}">
-            ${multiCapture}
-          </div>
-        </div>
-      </div>
-    </div>
-    `
-    $("#multi-capture-boss").append(multiCaptureHTML);
-  }
-  multiAdd(1);
-  multiAdd(2);
-  multiAdd(3);
-  multiAdd(4);
+    multiAdd(1);
+    multiAdd(2);
+    multiAdd(3);
+    multiAdd(4);
+    $(`img[value="${info.lelngth}"]`).imagesLoaded().always(function() {
+      console.log("unti");
+      $(".multi-capture-container").removeClass("none");
+      function multiCanvas(e) {
+        html2canvas(document.querySelector(`.multi-capture-container[value="${e}"]`)).then(canvas => {
+          $("#multi-capture-boss").append(canvas);
+          $("canvas").eq(e-1).attr("id",`target-${e + 1}`);
+        });
+      }
+      multiCanvas(1);
+      multiCanvas(2);
+      multiCanvas(3);
+      multiCanvas(4);
+      $(".multi-capture-container").addClass("none");
+      console.log("unti");
+      var dataURL = document.getElementById("target-1").toDataURL();
+      $(".multi-main img").attr("img",`${dataURL}`);
+    });
+  });
