@@ -834,7 +834,7 @@ $(function() {
       </td>
       <td class="item-main-container">
         <div class="item-main">
-          <img src="image/${info[i].image}.png">
+          <img class="lazyload" data-src="image/${info[i].image}.png">
           <div class="info-name">${info[i].name}</div>
         </div>
       </td>
