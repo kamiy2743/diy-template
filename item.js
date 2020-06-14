@@ -1036,7 +1036,7 @@
       function multiCanvas(e) {
         html2canvas(document.querySelector(`.multi-capture-container[value="${e}"]`)).then(canvas => {
           $("#multi-capture-boss").append(canvas);
-          $("canvas").eq(e-1).attr("id",`target-${e + 1}`);
+          $("canvas").eq(e-1).attr("id",`target-${e}`);
         });
       }
       multiCanvas(1);
