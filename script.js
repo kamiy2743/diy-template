@@ -1,6 +1,4 @@
 $(function() {
-  $("header,main").hide();
-  $("#main-template").show();
 // 使い方
   $("#howtouse").click(function() {
     $(".fa-chevron-right").toggleClass("none");
@@ -22,8 +20,8 @@ $(function() {
 
 // TOPに戻る
   $("#top-btn").click(function() {
-    $("html,body").animate({"scrollTop":0},100);
-  });
+  $("html,body").animate({"scrollTop":0},100);
+});
 
 // テンプレート作成画面へ
   $("#template").click(function() {
