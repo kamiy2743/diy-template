@@ -1,4 +1,4 @@
-$(function() {
+
 // カタカナ⇒ひらがな
   function convertStr(str) {
     return str.replace(/[ァ-ン]/g, function(s) {
@@ -843,6 +843,7 @@ $(function() {
     `;
   }
   $("table").append(itemHTML);
+  lazyload();
 
 // 表示件数取得
   function itemLength() {
@@ -999,11 +1000,10 @@ $(function() {
       <div class="multi-capture">
         <div class="multi-capture-title">
           <img src="image/DIY-icon.png">
-          <div>
-            <p>DIYレシピ テンプレ作成</p>
+          <div class="title-main">
+            <p>DIYレシピ テンプレ作成<span>(${e} / 4)</span></p>
             <p class="twitter">@kamiy2743</p>
           </div>
-          <div class="prop">(${e} / 4)</div>
           <div class="guide-container">
           <div class="guide-y guide">
             <div></div>
@@ -1029,7 +1029,3 @@ $(function() {
   multiAdd(2);
   multiAdd(3);
   multiAdd(4);
-
-// オフスクリーン画像の遅延読み込み
-  lazyload()
-});
