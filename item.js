@@ -1,5 +1,4 @@
 $(function() {
-  $("img.lazy").lazyload();
 // カタカナ⇒ひらがな
   function convertStr(str) {
     return str.replace(/[ァ-ン]/g, function(s) {
@@ -905,7 +904,7 @@ $(function() {
     if ($(this).hasClass("get-selected")) {
       $(this).removeClass("get-selected").text("未取得");
       $parent.find(".dist-if-btn").removeClass("dist-selected").text("不可");
-      $parent.find("select").prop("disabled",true);
+      $parent.find("select").prop("disabled",true).css("opacity",0.5);
       $parent.find("option").prop("selected",false);
       $(this).parents(".item").attr("code", 0);
       searchCode();
@@ -1026,7 +1025,11 @@ $(function() {
     `
     $("#multi-capture-boss").append(multiCaptureHTML);
   }
+  multiAdd(1);
+  multiAdd(2);
+  multiAdd(3);
+  multiAdd(4);
 
-
-lazyload();
+// オフスクリーン画像の遅延読み込み
+  lazyload()
 });
