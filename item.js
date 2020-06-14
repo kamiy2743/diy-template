@@ -1045,7 +1045,5 @@
       multiCanvas(4);
       $(".multi-capture-container").addClass("none");
       console.log("unti");
-      var dataURL = document.getElementById("target-1").toDataURL();
-      $(".multi-main img").attr("img",`${dataURL}`);
     });
   });
