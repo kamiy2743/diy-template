@@ -1,4 +1,5 @@
 $(function() {
+  $("img.lazy").lazyload();
 // カタカナ⇒ひらがな
   function convertStr(str) {
     return str.replace(/[ァ-ン]/g, function(s) {
@@ -1025,9 +1026,7 @@ $(function() {
     `
     $("#multi-capture-boss").append(multiCaptureHTML);
   }
-  multiAdd(1);
-  multiAdd(2);
-  multiAdd(3);
-  multiAdd(4);
 
+
+lazyload();
 });
