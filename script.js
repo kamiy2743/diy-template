@@ -1,4 +1,6 @@
 $(function() {
+  $("header,main").hide();
+  $("#main-template").show();
 // 使い方
   $("#howtouse").click(function() {
     $(".fa-chevron-right").toggleClass("none");
@@ -27,7 +29,16 @@ $(function() {
   $("#template").click(function() {
     $("header,main").hide();
     $("#main-template").show();
+  // 取得配布状況の取得
+    $(".item-capture").each(function() {
+      var index = $(".item-capture").index(this);
+      var code = $(".item").eq(index).attr("code");
+      if (code != 0) {
+        $(this).find("img").addClass(`code-${code}`)
+      }
+    });
   });
+
 // 一覧画面へ
   $(".whole").click(function() {
     $("#main-template").hide();
