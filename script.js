@@ -1,4 +1,4 @@
-
+//script.js
   $("header,main").hide();
   $("#main-template").show();
 // 使い方
@@ -55,7 +55,6 @@
   $(".tab-title").click(function() {
     if ($(this).attr("value") == 2) {
       tabControl(1,2);
-      $("#multi-capture-boss").toggleClass("none")
     } else {
       tabControl(2,1);
     }
